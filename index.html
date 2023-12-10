@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=EG+Garamond:wght@400;500;600;700&family=Fira+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
 
@@ -28,15 +28,16 @@
           </div>
           
           <div class="app-counter-box">
-            <p><span class="minutes">25</span>:<span class="seconds">00</span></p>
+            <p><span id="minutes">25</span>:<span id="seconds">00</span></p>
           </div>
-          <button class="btn-start">start</button>
+          <button id="start" class="btn-start" onclick="start()">start</button>
+          <button id="reset" class="btn-reset" onclick="start()">reset</button>
         </div>
       </div>
     </main>
 
 
-    <script type="module" src="/main.js"></script>
+    <script src="/main.js"></script>
   </body>
 </html>
 
