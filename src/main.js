@@ -1,36 +1,83 @@
-const minutesSpan = document.getElementById("minutes");
-const seconds = document.getElementById("seconds");
 
-let minutes = 1;
 
-let finalTime = minutes * 60 * 1000;
+//variables
+let minutes = 25;
+let seconds = "00";
+let breakTime = 5;
 
-let now;
-let finalDate;
+// const reset = document.querySelector('reset');
 
-function start() {
+
+//display
+window.onload = () =>{
+
+  document.getElementById("minutes").innerHTML = minutes;
+  document.getElementById("seconds").innerHTML = seconds;
+
+}
+
+//start Timer
+const start = () =>{
+
+
+  //change the time
+
+  seconds = 59;
+
+  let workMinutes = minutes - 1;
+  let breakMinutes = breakTime - 1;
+  let breakCount = 0;
+
+  //countdown
+
+  const timerFunction = () => {
+   document.getElementById("minutes").innerHTML = workMinutes;
+   document.getElementById("seconds").innerHTML = seconds;
+
+    seconds = seconds - 1;
+
+    if(seconds === 0){
+      workMinutes = workMinutes - 1;
+      seconds = 59;
+    }
+  }
+
+  //start countdown
+  setInterval(timerFunction, 1000) // 1000 = 1s
   document.getElementById("start").style.display = "none";
   document.getElementById("reset").style.display = "inline-flex";
 
-  now = new Date().getTime();
-  finalDate = now + finalTime;
+  // now = new Date().getTime();
+  // finalDate = now + finalTime;
 
-  const actualTime = setInterval(function () {
-    now = new Date().getTime();
+  // const actualTime = setInterval(function () {
+  //   now = new Date().getTime();
 
-    const distance = finalDate - now;
+  //   const distance = finalDate - now;
 
-    const remainingMinutes = Math.floor(
-      (distance % (1000 * 60 * 60)) / (1000 * 60)
-    );
-    const remainingSeconds = Math.floor((distance % (1000 * 60)) / 1000);
+  //   const remainingMinutes = Math.floor(
+  //     (distance % (1000 * 60 * 60)) / (1000 * 60)
+  //   );
+  //   const remainingSeconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    minutesSpan.textContent = remainingMinutes;
-    seconds.textContent = remainingSeconds;
+  //   minutesSpan.textContent = remainingMinutes;
+  //   seconds.textContent = remainingSeconds;
 
-    if (distance < 2) {
-      clearInterval(actualTime);
-      alert("¡Take a break for 5 minutes!");
-    }
-  }, 1000);
+  //   if (distance < 2) {
+  //     clearInterval(actualTime);
+  //     alert("¡Take a break for 5 minutes!");
+  //   }
+  // }, 1000);
 }
+
+
+reset.addEventListener('click', () =>{
+  console.clear();
+  minutes = 25;
+  seconds = "00";
+  
+  setInterval(timerFunction, 1000) // 1000 = 1s
+
+
+})
+
