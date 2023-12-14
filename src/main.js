@@ -4,8 +4,9 @@
 let minutes = 25;
 let seconds = "00";
 let breakTime = 5;
+let actualTime;
 
-// const reset = document.querySelector('reset');
+const reset = document.querySelector('#reset');
 
 
 //display
@@ -19,6 +20,9 @@ window.onload = () =>{
 //start Timer
 const start = () =>{
 
+  if(actualTime){
+    clearInterval(actualTime);
+  }
 
   //change the time
 
@@ -36,6 +40,12 @@ const start = () =>{
 
     seconds = seconds - 1;
 
+    
+  if(workMinutes === 0 && seconds === 0){
+    clearInterval(actualTime); // Stop the countdown
+    alert("¡Take a break for 5 minutes!");
+  }
+
     if(seconds === 0){
       workMinutes = workMinutes - 1;
       seconds = 59;
@@ -43,9 +53,10 @@ const start = () =>{
   }
 
   //start countdown
-  setInterval(timerFunction, 1000) // 1000 = 1s
+  actualTime = setInterval(timerFunction, 1000) // 1000 = 1s
   document.getElementById("start").style.display = "none";
   document.getElementById("reset").style.display = "inline-flex";
+
 
   // now = new Date().getTime();
   // finalDate = now + finalTime;
@@ -71,13 +82,16 @@ const start = () =>{
 }
 
 
+
 reset.addEventListener('click', () =>{
+
+  clearInterval(actualTime);
   console.clear();
   minutes = 25;
   seconds = "00";
-  
-  setInterval(timerFunction, 1000) // 1000 = 1s
+  document.getElementById("minutes").innerHTML = minutes;
+  document.getElementById("seconds").innerHTML = seconds;
+  document.getElementById("start").style.display = "inline-flex";
+  document.getElementById("reset").style.display = "none";
 
-
-})
-
+});
